@@ -11,12 +11,16 @@ public class Pelota : MonoBehaviour
 
     // variables bool - f o t
     private bool estaArrastrando = false; // Para cuando la pelota le estés haciendo click
-    private bool yaFueLanzada = false; // para evitar que la pelota pueda vovler a ser estiada cuando sigue en movimiento
-    private bool juegoTerminado = false; // Para cuando ganes o pierdes se queda bloqueado 
+    private bool yaFueLanzada = false; // Para evitar que la pelota pueda volver a ser estirada
+    private bool juegoTerminado = false; // Para cuando ganes o pierdes se quede bloqueado 
+
+
 
     [Header("Configuración Lanzamiento")]
-    public float fuerzaLanzamiento = 15f;       // Potencia de lanzamiento
+    public float fuerzaLanzamiento = 15f;       // Potencia de lanzamiento 
     public float maxDistanciaArrastre = 3f;     // Distancia máxima para tirar
+
+
 
     [Header("UI y Paneles")]
     public int disparosRestantes = 3;          // Número de tiros disponibles
@@ -26,35 +30,45 @@ public class Pelota : MonoBehaviour
 
 
 
-
-    private void Awake() // met para iniciar y preparar sistemas de controles 
+    private void Awake() // método para iniciar y preparar sistemas de controles 
     {
-        misControles = new Controles();
-        rb = GetComponent<Rigidbody2D>();
+        misControles = new Controles();     // De los controles, crear una nueva varib
+        rb = GetComponent<Rigidbody2D>();   // Pedir el RigidBody
     }
 
     void Start()
     {
         posicionInicial = transform.position;       // Donde se coloca la pelota, guardar xy
-        rb.simulated = false;       // Apagar las físicas temporalmente
+        rb.simulated = false;       // Apagar las físicas temporalmente. Simulated propiedad de RigidBody que permite  las físicas 
 
         misControles.Gameplay.Click.performed += ctx => EmpezarArrastre(); // cuando se ejecute la funcion
         misControles.Gameplay.Click.canceled += ctx => SoltarYDisparar();  // cuando se cancele la funcion
 
-        ActualizarUI();
+        ActualizarUI(); // Para que las funciones se actualicen 
+
+
 
         // Ocultar paneles al iniciar el juego
-        if (panelGameOver != null) panelGameOver.SetActive(false);
-        if (panelVictoria != null) panelVictoria.SetActive(false);
+                        // Comprobar los paneles de vic & per y poner ambos desactivados
+        if (panelGameOver != null) panelGameOver.SetActive(false);     
+        if (panelVictoria != null) panelVictoria.SetActive(false);      
+
     }
 
-    // para act y desc de controles
+    // Para activar y descactivar controles
     private void OnEnable() => misControles.Enable();
     private void OnDisable() => misControles.Disable();
 
-    void EmpezarArrastre() //  método para estirar la pelota
+
+
+
+
+    void EmpezarArrastre() //  Método para arrastrar la pelota
     {
-        if (juegoTerminado || disparosRestantes <= 0 || yaFueLanzada) return; // ||= O ; revisa 3 condiciones; si ya termino si ye qiedas soin pelotas y su ya fue lanzada
+        if (juegoTerminado || disparosRestantes <= 0 || yaFueLanzada) return; 
+        // ||= O (comparación); Se revisan 3 condiciones:
+        // si ya terminó el juego. Si te quedas sin disparos.Si ya la pelota fue lanzada.
+        
 
         Vector2 posicionMousePantalla = misControles.Gameplay.Posicion.ReadValue<Vector2>(); // Preguntar a los controles la posición del cursor
         Vector3 mousePos = new Vector3(posicionMousePantalla.x, posicionMousePantalla.y, 0f); // V3 se va a guardar. Crear un nuevo vector acorde a las corrdenadas del mouse en pantalla y se le asgina o po la profundidad 
