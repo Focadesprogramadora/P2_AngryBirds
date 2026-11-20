@@ -251,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 1764343617}
     - target: {fileID: 7461312617670672866, guid: 874ac3f05280f0c429d54c90104fc890, type: 3}
       propertyPath: disparosRestantes
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7461312617670672866, guid: 874ac3f05280f0c429d54c90104fc890, type: 3}
       propertyPath: fuerzaLanzamiento
@@ -1765,6 +1765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32d49b9744cd6443babef90c47f84d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SistemaPuntaje
+  puntajeActual: 0
   textoPuntaje: {fileID: 1580991783}
 --- !u!1 &1381552933
 GameObject:

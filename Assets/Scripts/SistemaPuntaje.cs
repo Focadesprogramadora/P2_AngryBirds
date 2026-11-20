@@ -3,7 +3,7 @@ using TMPro;
 
 public class SistemaPuntaje : MonoBehaviour
 {
-    private int puntajeActual = 0; // Variable para guardar el puntaje del jugador
+    public int puntajeActual = 0; // Variable para guardar el puntaje del jugador
 
  
     public TextMeshProUGUI textoPuntaje; // Variable para el componente del texto del canvas

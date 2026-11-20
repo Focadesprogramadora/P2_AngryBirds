@@ -11,13 +11,19 @@ public class Enemigo : MonoBehaviour
         {
             SistemaPuntaje gestorPuntaje = FindAnyObjectByType<SistemaPuntaje>(); //  Busca al puntaje y lo guarda en una variable llamada gestorPuntaje
 
-            if (gestorPuntaje != null) // Se verifica la variable puntaje
+            if (gestorPuntaje != null) // Se verifica que la variable exista
             {
                 gestorPuntaje.SumarPuntos(puntosQueDa); // Suma de puntos al puntaje 
+
+                // Los player prefs para guardar el puntaje
+                PlayerPrefs.SetInt("PuntajeFinal", gestorPuntaje.puntajeActual);
+                PlayerPrefs.Save();
             }
 
-          
-            Destroy(gameObject);        // Se destruye al enemigo
+            Destroy(gameObject);
+
         }
+
     }
+
 }

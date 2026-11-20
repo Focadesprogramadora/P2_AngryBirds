@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Pelota : MonoBehaviour
 {
@@ -164,7 +165,12 @@ public class Pelota : MonoBehaviour
             }
             rb.linearVelocity = Vector2.zero;
             rb.simulated = false;
-            // apagar físicas de la pelota para que se quede quieta
+            // apagar físicas de la pelota para que se quede quietas
+
+
+            // cuando ganas, se cambia a la pantalla de victoria
+            SceneManager.LoadScene("AngrySeals2");
+
         }
     }
 
